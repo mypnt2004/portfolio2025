@@ -1,0 +1,96 @@
+nav {
+display: flex;
+padding: 64px 120px;
+justify-content: center;
+align-items: center;
+gap: 64px;
+align-self: stretch;}
+
+nav ul {
+display: flex;
+padding: 16px 24px;
+justify-content: center;
+align-items: center;
+gap: 64px;
+align-self: stretch;
+}
+nav ul li {
+    color: var(--global-secondary-50, #FFF8E9);
+    font: var(--Text-18-Bold);
+    display: flex;
+    padding: 12px 24px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1000px;
+    background: var(--global-secondary-500, #FFB823);
+}
+
+/* Hero section */
+.hero {
+display: flex;
+
+padding: 32px 120px 96px 120px;
+flex-direction: column;
+align-items: center;
+gap: 20px;
+justify-content: center;
+}
+.hero-content {display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    align-self: stretch;
+    justify-content: center;
+}
+.headings {
+    display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+gap: 12px;
+align-self: stretch;
+
+}
+.heading1 {
+    display: flex;
+justify-content: center;
+align-items: center;
+gap: 12px;
+align-self: stretch;
+}
+.heading1 h1 {
+    color: var(--global-primary-950, #0B140B);
+
+font: var(--Display-36-Med);
+}
+.heading1 h1 span {
+    color: var(--global-primary-500, #2D4F2B);
+
+font: var(--Display-36-Bold);
+}
+.heading2 h1 {
+    color: var(--global-neutral-900, #555043);
+text-align: center;
+
+font: var(--Display-30-Reg);
+}
+.heading2 h1 span {
+    color: var(--global-secondary-500, #FFB823);
+
+font: var(--Display-30-Bold);
+}
+.hero-content .button {
+    width: 200px;
+    display: flex;
+    padding: 12px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-radius: 1000px;
+background: var(--global-secondary-400, #FFC64F);
+}
+.hero-content .button h1 {
+    color: var(--global-primary-500, #2D4F2B);
+
+font: var(--Text-20-Reg);
+}
