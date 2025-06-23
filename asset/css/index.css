@@ -15,13 +15,35 @@ gap: 64px;
 align-self: stretch;
 }
 nav ul li {
-    color: var(--global-secondary-50, #FFF8E9);
+    color: var(--global-secondary-500, #FFB823);
     font: var(--Text-18-Bold);
     display: flex;
     padding: 12px 24px;
     justify-content: center;
     align-items: center;
     border-radius: 1000px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+nav ul li.active {
+    color: var(--global-secondary-50, #FFF8E9);
+    background: var(--global-secondary-500, #FFB823);
+}
+
+nav ul li:not(.active):hover {
+    color: var(--global-secondary-500, #FFB823);
+}
+
+nav ul li:not(.active):hover::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 2px;
     background: var(--global-secondary-500, #FFB823);
 }
 
