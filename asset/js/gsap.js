@@ -2,6 +2,44 @@
 document.addEventListener('DOMContentLoaded', function() {
     const heroBanner = document.querySelector('.hero img[src*="Herobanner"]');
     
+    // Hero Banner Initial Animation - Zoom out effect
+    if (heroBanner) {
+        // Set initial state - larger scale and slightly transparent
+        gsap.set(heroBanner, {
+            scale: 1.2,
+            opacity: 0,
+            transformOrigin: "center center"
+        });
+        
+        // Animate to normal state
+        gsap.to(heroBanner, {
+            scale: 1,
+            opacity: 1,
+            duration: 1.5,
+            ease: "power2.out",
+            delay: 0.3
+        });
+    }
+    
+    // Hero Content Animation - Fade up effect
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent) {
+        // Set initial state
+        gsap.set(heroContent, {
+            y: 50,
+            opacity: 0
+        });
+        
+        // Animate to normal state
+        gsap.to(heroContent, {
+            y: 0,
+            opacity: 1,
+            duration: 1.2,
+            ease: "power2.out",
+            delay: 0.8
+        });
+    }
+    
     // Flower Animation - Zoom out and rotate
     const flowers = document.querySelectorAll('.heading1 img[src*="Hoa"]');
     
@@ -14,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         // Create timeline for flower animations
-        const flowerTimeline = gsap.timeline({ delay: 0.5 });
+        const flowerTimeline = gsap.timeline({ delay: 1.2 });
         
         // Animate each flower with stagger
         flowerTimeline.to(flowers, {
@@ -71,6 +109,82 @@ document.addEventListener('DOMContentLoaded', function() {
                 duration: 1.5,
                 ease: "power2.out"
             });
+        });
+    }
+    
+    // Scroll for more button functionality
+    const scrollButton = document.querySelector('.hero-content .button');
+    if (scrollButton) {
+        scrollButton.addEventListener('click', () => {
+            // Smooth scroll to next section or bottom of viewport
+            window.scrollTo({
+                top: window.innerHeight,
+                behavior: 'smooth'
+            });
+        });
+    }
+    
+    // Navigation sliding tab functionality
+    const navItems = document.querySelectorAll('.nav-item');
+    const navIndicator = document.querySelector('.nav-indicator');
+    
+    if (navItems.length > 0 && navIndicator) {
+        // Function to update indicator position
+        function updateIndicator(activeItem) {
+            const itemRect = activeItem.getBoundingClientRect();
+            const navRect = activeItem.parentElement.getBoundingClientRect();
+            
+            // Calculate position relative to nav container
+            const leftPosition = itemRect.left - navRect.left;
+            
+            // Set indicator position and size
+            gsap.set(navIndicator, {
+                left: leftPosition,
+                top: 0,
+                width: itemRect.width,
+                height: itemRect.height
+            });
+        }
+        
+        // Set initial position for the active item
+        const activeItem = document.querySelector('.nav-item.active');
+        if (activeItem) {
+            updateIndicator(activeItem);
+        }
+        
+        // Add click event listeners to nav items
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // Remove active class from all items
+                navItems.forEach(navItem => navItem.classList.remove('active'));
+                
+                // Add active class to clicked item
+                item.classList.add('active');
+                
+                // Update indicator position with smooth animation
+                const itemRect = item.getBoundingClientRect();
+                const navRect = item.parentElement.getBoundingClientRect();
+                const leftPosition = itemRect.left - navRect.left;
+                
+                gsap.to(navIndicator, {
+                    left: leftPosition,
+                    width: itemRect.width,
+                    height: itemRect.height,
+                    duration: 0.4,
+                    ease: "power2.out"
+                });
+            });
+        });
+        
+        // Update indicator position on window resize
+        window.addEventListener('resize', () => {
+            const activeItem = document.querySelector('.nav-item.active');
+            if (activeItem) {
+                // Delay the update to ensure CSS transitions are complete
+                setTimeout(() => {
+                    updateIndicator(activeItem);
+                }, 100);
+            }
         });
     }
 }); 

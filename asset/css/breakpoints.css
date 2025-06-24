@@ -1,0 +1,250 @@
+/* =========================
+   RESPONSIVE BREAKPOINTS
+   ========================= */
+
+/* Tablet and below */
+@media (max-width: 768px) {
+    /* Navigation responsive */
+    nav {
+       
+        padding-bottom: 20px;
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+    
+    nav ul {
+        gap: 24px;
+    }
+    
+    .nav-item {
+        font: var(--Text-12-Med);
+        padding: 5px 14px;
+    }
+    
+    /* Hero section responsive */
+    .hero {
+        height: calc(100vh - 120px);
+        padding: 0 24px;
+        gap: 12px;
+    }
+    
+    .hero img {
+        max-width: 90%;
+        height: auto;
+    }
+    
+    .hero-content {
+        gap: 24px;
+    }
+    
+    .headings {
+        gap: 8px;
+    }
+    
+    .heading1 {
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+    
+    .heading1 h1 {
+        font: var(--Display-24-Med);
+        text-align: center;
+    }
+    
+    .heading1 h1 span {
+        font: var(--Display-24-Bold);
+    }
+    
+    .heading1 img {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .heading2 h1 {
+        font: var(--Display-18-Reg);
+        text-align: center;
+        flex-wrap: wrap;
+    }
+    
+    .heading2 h1 span {
+        font: var(--Display-18-Bold);
+    }
+    
+    .hero-content .button {
+        width: 180px;
+        padding: 10px 20px;
+    }
+    
+    .hero-content .button h1 {
+        font: var(--Text-16-Reg);
+    }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+    /* Navigation responsive */
+    nav {
+        padding-top: 36px;
+       
+        padding-bottom: 16px;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    
+    nav ul {
+        gap: 16px;
+    }
+    
+    .nav-item {
+        font: var(--Text-12-Reg);
+        padding: 3px 10px;
+    }
+    
+    /* Hero section responsive */
+    .hero {
+        height: calc(100vh - 100px);
+        padding: 0 16px;
+        gap: 8px;
+    }
+    
+    .hero img {
+        max-width: 95%;
+        height: auto;
+    }
+    
+    .hero-content {
+        gap: 20px;
+    }
+    
+    .headings {
+        gap: 6px;
+    }
+    
+    .heading1 {
+        gap: 4px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .heading1 h1 {
+        font: var(--Display-20-Med);
+        text-align: center;
+        line-height: 1.2;
+        flex: 1;
+        min-width: 0;
+    }
+    
+    .heading1 h1 span {
+        font: var(--Display-20-Bold);
+    }
+    
+    .heading1 img {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+    }
+    
+    .heading2 h1 {
+        font: var(--Display-16-Reg);
+        text-align: center;
+        line-height: 1.3;
+        flex-direction: column;
+    }
+    
+    .heading2 h1 span {
+        font: var(--Display-16-Bold);
+    }
+    
+    .hero-content .button {
+        width: 160px;
+        padding: 8px 16px;
+    }
+    
+    .hero-content .button h1 {
+        font: var(--Text-14-Reg);
+    }
+}
+
+/* Very small phones */
+@media (max-width: 360px) {
+    /* Navigation responsive */
+    nav {
+        padding-top: 36px;
+    
+        padding-bottom: 12px;
+    }
+    
+    nav ul {
+        gap: 12px;
+    }
+    
+    .nav-item {
+        font: var(--Text-12-Reg);
+        padding: 2px 8px;
+    }
+    
+    /* Hero section responsive */
+    .hero {
+        padding: 0 12px;
+        padding-top: 36px;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    
+    .heading1 {
+        gap: 3px;
+    }
+    
+    .heading1 h1 {
+        font: var(--Display-18-Med);
+    }
+    
+    .heading1 h1 span {
+        font: var(--Display-18-Bold);
+    }
+    
+    .heading1 img {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .heading2 h1 {
+        font: var(--Display-14-Reg);
+    }
+    
+    .heading2 h1 span {
+        font: var(--Display-14-Bold);
+    }
+    
+    .hero-content .button {
+        width: 140px;
+        padding: 6px 12px;
+    }
+    
+    .hero-content .button h1 {
+        font: var(--Text-12-Reg);
+    }
+}
+
+/* Landscape mobile orientation fixes */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        height: auto;
+        min-height: calc(100vh - 80px);
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    
+    .hero img {
+        max-height: 30vh;
+        width: auto;
+    }
+    
+    .hero-content {
+        gap: 16px;
+    }
+    
+    .headings {
+        gap: 4px;
+    }
+} 

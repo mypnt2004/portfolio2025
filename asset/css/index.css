@@ -1,6 +1,7 @@
 nav {
 display: flex;
-padding: 64px 120px;
+padding-top: 20px;
+padding-bottom: 32px;
 justify-content: center;
 align-items: center;
 gap: 64px;
@@ -8,35 +9,36 @@ align-self: stretch;}
 
 nav ul {
 display: flex;
-padding: 16px 24px;
 justify-content: center;
 align-items: center;
 gap: 64px;
 align-self: stretch;
+position: relative;
 }
-nav ul li {
+
+.nav-item {
     color: var(--global-secondary-500, #FFB823);
-    font: var(--Text-18-Bold);
+    font: var(--Text-14-Bold);
     display: flex;
-    padding: 12px 24px;
+    padding: 6px 20px;
     justify-content: center;
     align-items: center;
     border-radius: 1000px;
     transition: all 0.3s ease;
     cursor: pointer;
     position: relative;
+    z-index: 2;
 }
 
-nav ul li.active {
+.nav-item.active {
     color: var(--global-secondary-50, #FFF8E9);
-    background: var(--global-secondary-500, #FFB823);
 }
 
-nav ul li:not(.active):hover {
+.nav-item:not(.active):hover {
     color: var(--global-secondary-500, #FFB823);
 }
 
-nav ul li:not(.active):hover::after {
+.nav-item:not(.active):hover::after {
     content: '';
     position: absolute;
     bottom: 8px;
@@ -47,14 +49,23 @@ nav ul li:not(.active):hover::after {
     background: var(--global-secondary-500, #FFB823);
 }
 
+.nav-indicator {
+    position: absolute;
+    background: var(--global-secondary-500, #FFB823);
+    border-radius: 1000px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+    /* Initial position and size will be set by JavaScript */
+}
+
 /* Hero section */
 .hero {
 display: flex;
-
-padding: 32px 120px 96px 120px;
+height: calc(100vh - 140px); /* Trừ đi height của nav */
+padding: 0 120px;
 flex-direction: column;
 align-items: center;
-gap: 20px;
+gap: 16px;
 justify-content: center;
 }
 .hero-content {display: flex;
@@ -77,29 +88,33 @@ align-self: stretch;
     display: flex;
 justify-content: center;
 align-items: center;
-gap: 12px;
+gap: 8px;
 align-self: stretch;
 }
 .heading1 h1 {
     color: var(--global-primary-950, #0B140B);
 
-font: var(--Display-36-Med);
+font: var(--Display-30-Med);
 }
 .heading1 h1 span {
     color: var(--global-primary-500, #2D4F2B);
 
-font: var(--Display-36-Bold);
+font: var(--Display-30-Bold);
 }
 .heading2 h1 {
+    display: flex;
     color: var(--global-neutral-900, #555043);
 text-align: center;
+align-items: center;
+justify-content: center;
+gap: 4px;
 
-font: var(--Display-30-Reg);
+font: var(--Display-24-Reg);
 }
 .heading2 h1 span {
     color: var(--global-secondary-500, #FFB823);
 
-font: var(--Display-30-Bold);
+font: var(--Display-24-Bold);
 }
 .hero-content .button {
     width: 200px;
@@ -109,10 +124,54 @@ font: var(--Display-30-Bold);
     align-items: center;
     gap: 12px;
     border-radius: 1000px;
-background: var(--global-secondary-400, #FFC64F);
+    background: var(--global-secondary-400, #FFC64F);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: bounce 2s infinite;
+    position: relative;
 }
-.hero-content .button h1 {
-    color: var(--global-primary-500, #2D4F2B);
 
-font: var(--Text-20-Reg);
+.hero-content .button::after {
+    content: '';
+    position: absolute;
+    right: 16px;
+    font-size: 18px;
+    color: var(--global-primary-500, #2D4F2B);
+    animation: bounceArrow 2s infinite;
+}
+
+.hero-content .button:hover {
+    transform: translateY(-2px);
+    background: var(--global-secondary-500, #FFB823);
+    animation-play-state: paused;
+}
+
+.hero-content .button h1 {
+    color: var(--global-secondary-50, #FFF8E9);
+    font: var(--Text-20-Reg);
+}
+
+/* Animations */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-5px);
+    }
+    60% {
+        transform: translateY(-3px);
+    }
+}
+
+@keyframes bounceArrow {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(3px);
+    }
+    60% {
+        transform: translateY(1px);
+    }
 }
