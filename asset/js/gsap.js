@@ -72,6 +72,91 @@ document.addEventListener('DOMContentLoaded', function() {
         }, "-=0.5");
     }
     
+    // Floating Flowers Animation
+    const floatingFlowers = document.querySelectorAll('.floating-flower');
+    
+    if (floatingFlowers.length > 0) {
+        // Function to get random position within hero section bounds
+        function getRandomPosition() {
+            const hero = document.querySelector('.hero');
+            const heroRect = hero.getBoundingClientRect();
+            
+            // Get random position with some margin from edges
+            const margin = 80;
+            const randomX = Math.random() * (heroRect.width - margin * 2) + margin;
+            const randomY = Math.random() * (heroRect.height - margin * 2) + margin;
+            
+            return { x: randomX, y: randomY };
+        }
+        
+        // Set initial positions and states for floating flowers
+        floatingFlowers.forEach((flower, index) => {
+            const randomPos = getRandomPosition();
+            
+            gsap.set(flower, {
+                left: randomPos.x,
+                top: randomPos.y,
+                scale: 0,
+                opacity: 0,
+                rotation: Math.random() * 360,
+                transformOrigin: "center center"
+            });
+        });
+        
+        // Create staggered animation for floating flowers
+        const floatingTimeline = gsap.timeline({ delay: 1.5 });
+        
+        floatingFlowers.forEach((flower, index) => {
+            // Zoom out effect with opacity fade in
+            floatingTimeline.to(flower, {
+                scale: 1,
+                opacity: 0.7,
+                duration: 1.8,
+                ease: "back.out(1.2)",
+                delay: index * 0.8
+            }, 0)
+            
+            // Continuous slow rotation
+            .to(flower, {
+                rotation: "+=360",
+                duration: 15 + Math.random() * 10, // Random rotation speed between 15-25 seconds
+                ease: "none",
+                repeat: -1,
+                delay: index * 0.8
+            }, 0.5)
+            
+            // Gentle floating movement
+            .to(flower, {
+                y: "+=20",
+                duration: 4 + Math.random() * 2,
+                ease: "power1.inOut",
+                yoyo: true,
+                repeat: -1,
+                delay: index * 0.8
+            }, 1)
+            
+            .to(flower, {
+                x: "+=15",
+                duration: 6 + Math.random() * 3,
+                ease: "power1.inOut",
+                yoyo: true,
+                repeat: -1,
+                delay: index * 0.8
+            }, 1.5);
+        });
+        
+        // Reposition flowers on window resize
+        window.addEventListener('resize', () => {
+            floatingFlowers.forEach(flower => {
+                const randomPos = getRandomPosition();
+                gsap.set(flower, {
+                    left: randomPos.x,
+                    top: randomPos.y
+                });
+            });
+        });
+    }
+    
     if (heroBanner) {
         // Set initial transform origin
         gsap.set(heroBanner, { 
