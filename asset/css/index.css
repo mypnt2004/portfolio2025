@@ -1,3 +1,7 @@
+a {
+    display: inline-block;
+    text-decoration: none;
+}
 nav {
 display: flex;
 padding-top: 20px;
@@ -199,4 +203,200 @@ font: var(--Display-24-Bold);
     60% {
         transform: translateY(1px);
     }
+}
+
+/* Hero section */
+.intro {
+    display: flex;
+padding: 96px 120px 48px 120px;
+justify-content: space-between;
+align-items: center;
+align-self: stretch;
+flex-direction: row;
+}
+.left-info {
+    display: flex;
+width: 584px;
+flex-direction: column;
+align-items: flex-start;
+gap: 48px;
+}
+.intro .left-info .heading   
+{display: flex;
+    align-items: flex-end;
+    gap: 24px;
+    flex-direction: row;
+}
+.intro .left-info .heading h1 {
+    color: #2D4F2B;
+    text-shadow: 6px 6px 10px var(--global-primary-200, #ABB9AA);
+    
+    /* Display/80/Bold */
+    font-family: Quicksand;
+    font-size: 80px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.intro .left-info .heading img {
+    width: 70px;
+height: 70px;
+}
+.intro .left-info p {
+    height: 210px;
+    flex: 1 0 0;
+    color: var(--global-primary-500, #2D4F2B);
+    text-align: justify;
+     
+    /* Text/24/Med */
+    font-family: Quicksand;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 30px; /* 125% */}
+
+.intro .left-info .icon-list {
+    display: flex;
+width: 591px;
+align-items: center;
+gap: 32px;
+}
+
+.intro .left-info .icon-list img {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    vertical-align: top;
+    display: block;
+}
+
+.intro .left-info .icon-list img:hover {
+    transform: translateY(-8px);
+}
+
+.intro .left-info .icon-list a {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.intro .left-info .icon-list a img {
+    display: block;
+}
+
+/* Icon popup styles */
+.icon-popup {
+    display: flex;
+    padding: 12px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    border: 1px solid var(--global-primary-500, #2D4F2B);
+    background: var(--global-neutral-50, #FFFEFA);
+    
+    color: var(--global-primary-500, #2D4F2B);
+    text-align: center;
+    
+    /* Text/16/Med */
+    font-family: Quicksand;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    
+    z-index: 9999 !important;
+    pointer-events: none;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(45, 79, 43, 0.15);
+    position: fixed !important;
+}
+
+/* Education section */
+.education {
+    display: flex;
+    padding: 68px 120px 64px 120px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 29px;
+    align-self: stretch;
+}
+.education h1 {color: #2D4F2B;
+    text-align: center;
+    
+  font: var(--Display-36-Bold);
+}
+.card-list {
+    display: flex;
+    align-items: center;
+    gap: 64px;
+    align-self: stretch;
+}
+.card-education {
+    display: flex;
+padding: 16px;
+flex-direction: column;
+align-items: flex-start;
+gap: 48px;
+flex: 1 0 0;
+align-self: stretch;
+border-radius: 8px;
+background: var(--global-secondary-200, #FFE3A7);
+transition: all 0.6s ease;
+cursor: pointer;
+}
+
+.card-education:hover {
+    background: var(--global-primary-500, #2D4F2B);
+}
+
+.card-education:hover .card-tag {
+    color: var(--global-secondary-200, #FFE3A7);
+}
+
+.card-education:hover .card-title {
+    color: var(--global-secondary-200, #FFE3A7);
+}
+
+.card-education:hover .card-des .course {
+    color: var(--global-secondary-200, #FFE3A7);
+}
+
+.card-education:hover .card-des .time {
+    color: var(--global-secondary-200, #FFE3A7);
+}
+.card-content {
+    display: flex;
+    padding: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    align-self: stretch;
+    border: 2px dashed var(--global-primary-400, #577255);
+}
+.card-tag {
+    display: flex;
+justify-content: center;
+align-items: center;
+font: var(--Text-16-Med);
+color: var(--global-primary-540, #719070);
+text-decoration: underline;
+}
+.card-title {
+    color: #2D4F2B;
+   
+font: var(--Text-24-Bold);
+}
+.card-des {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+}
+.card-des .course {
+    color: #2D4F2B;
+    font: var(--Text-20-Bold);
+}
+.card-des .time {
+    color: #719070;
+    font: var(--Text-16-Med);
+    text-align: center;
 }

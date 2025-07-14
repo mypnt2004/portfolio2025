@@ -272,4 +272,233 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+    
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // INTRO SECTION ANIMATIONS
+    const introSection = document.querySelector('.intro');
+    if (introSection) {
+        // Animate intro heading
+        const introHeading = document.querySelector('.intro .left-info .heading');
+        if (introHeading) {
+            gsap.fromTo(introHeading, 
+                {
+                    x: -100,
+                    opacity: 0,
+                    scale: 0.8
+                },
+                {
+                    x: 0,
+                    opacity: 1,
+                    scale: 1,
+                    duration: 1.2,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: introSection,
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        }
+        
+        // Animate intro heading flower with rotation
+        const introFlower = document.querySelector('.intro .left-info .heading img');
+        if (introFlower) {
+            // Initial entrance animation
+            gsap.fromTo(introFlower, 
+                {
+                    scale: 0,
+                    rotation: -180,
+                    transformOrigin: "center center"
+                },
+                {
+                    scale: 1,
+                    rotation: 0,
+                    duration: 1.5,
+                    ease: "back.out(1.7)",
+                    delay: 0.8,
+                    scrollTrigger: {
+                        trigger: introSection,
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+            
+            // Continuous rotation animation
+            gsap.to(introFlower, {
+                rotation: 360,
+                duration: 8,
+                ease: "none",
+                repeat: -1,
+                delay: 2.3,
+                scrollTrigger: {
+                    trigger: introSection,
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+        }
+        
+        // Animate intro paragraph
+        const introParagraph = document.querySelector('.intro .left-info p');
+        if (introParagraph) {
+            gsap.fromTo(introParagraph, 
+                {
+                    y: 50,
+                    opacity: 0
+                },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 1,
+                    ease: "power2.out",
+                    delay: 0.3,
+                    scrollTrigger: {
+                        trigger: introSection,
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        }
+        
+        // Animate intro icons with stagger
+        const introIcons = document.querySelectorAll('.intro .icon-list img');
+        if (introIcons.length > 0) {
+            gsap.fromTo(introIcons, 
+                {
+                    y: 40,
+                    opacity: 0,
+                    scale: 0.8
+                },
+                {
+                    y: 0,
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.6,
+                    ease: "power2.out",
+                    stagger: 0.15,
+                    delay: 0.6,
+                    scrollTrigger: {
+                        trigger: introSection,
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        }
+        
+        // Animate intro banner
+        const introBanner = document.querySelector('.intro_banner');
+        if (introBanner) {
+            gsap.fromTo(introBanner, 
+                {
+                    x: 100,
+                    opacity: 0,
+                    scale: 0.8,
+                    rotation: 15
+                },
+                {
+                    x: 0,
+                    opacity: 1,
+                    scale: 1,
+                    rotation: 0,
+                    duration: 1.5,
+                    ease: "power3.out",
+                    delay: 0.4,
+                    scrollTrigger: {
+                        trigger: introSection,
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        }
+    }
+    
+    // EDUCATION SECTION ANIMATIONS  
+    const educationSection = document.querySelector('.education');
+    if (educationSection) {
+        // Animate education title
+        const educationTitle = document.querySelector('.education h1');
+        if (educationTitle) {
+            gsap.fromTo(educationTitle, 
+                {
+                    y: -50,
+                    opacity: 0,
+                    scale: 0.8
+                },
+                {
+                    y: 0,
+                    opacity: 1,
+                    scale: 1,
+                    duration: 1,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: educationSection,
+                        start: "top 85%",
+                        end: "bottom 20%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        }
+        
+        // Animate education cards with stagger
+        const educationCards = document.querySelectorAll('.card-education');
+        if (educationCards.length > 0) {
+            gsap.fromTo(educationCards, 
+                {
+                    y: 60,
+                    opacity: 0,
+                    scale: 0.95
+                },
+                {
+                    y: 0,
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.5,
+                    ease: "power2.out",
+                    stagger: 0.15,
+                    delay: 0.2,
+                    scrollTrigger: {
+                        trigger: educationSection,
+                        start: "top 85%",
+                        end: "bottom 20%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+            
+            // Add hover animation for cards
+            educationCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    gsap.to(card, {
+                        y: -10,
+                        scale: 1.05,
+                        duration: 0.3,
+                        ease: "power2.out"
+                    });
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    gsap.to(card, {
+                        y: 0,
+                        scale: 1,
+                        duration: 0.3,
+                        ease: "power2.out"
+                    });
+                });
+            });
+        }
+    }
 }); 

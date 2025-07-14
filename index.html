@@ -1,61 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TieuMy-portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TieuMy-portfolio</title>
   <link rel="stylesheet" href="./asset/css/index.css">
   <link rel="stylesheet" href="./asset/css/tokens.css">
   <link rel="stylesheet" href="./asset/css/breakpoints.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
+
 <body>
 
-<nav>
-  <ul> 
-    <li class="nav-item active" data-tab="about">ABOUT</li>
-    <li class="nav-item" data-tab="projects">PROJECTS</li>
-    <li class="nav-item" data-tab="contact">CONTACT</li>
-    <div class="nav-indicator"></div>
-  </ul>
-</nav>
-<main>
-  <section class="hero">
-    <img src="./asset/img/Herobanner.svg" alt="hero">
-    
-    <!-- Floating flowers for animation -->
-    <div class="floating-flowers">
-      <img src="./asset/img/blueflower.svg" alt="blue flower" class="floating-flower">
-      <img src="./asset/img/greenflower.svg" alt="green flower" class="floating-flower">
-      <img src="./asset/img/pinkflower.svg" alt="pink flower" class="floating-flower">
-      <img src="./asset/img/blueflower.svg" alt="blue flower" class="floating-flower">
-      <img src="./asset/img/greenflower.svg" alt="green flower" class="floating-flower">
-      <img src="./asset/img/pinkflower.svg" alt="pink flower" class="floating-flower">
-      <img src="./asset/img/blueflower.svg" alt="blue flower" class="floating-flower">
-      <img src="./asset/img/greenflower.svg" alt="green flower" class="floating-flower">
-      <img src="./asset/img/pinkflower.svg" alt="pink flower" class="floating-flower">
-      <img src="./asset/img/blueflower.svg" alt="blue flower" class="floating-flower">
-      <img src="./asset/img/greenflower.svg" alt="green flower" class="floating-flower">
-      <img src="./asset/img/pinkflower.svg" alt="pink flower" class="floating-flower">
-    </div>
-    
-    <div class="hero-content">
-      <div class="headings">
-        <div class="heading1">
-          <img src="./asset/img/Hoa.svg" alt="hoa">
-          <h1>Xin chào, mình là <span>Tiểu My</span></h1>
-          <img src="./asset/img/Hoa.svg" alt="hoa">
+  <nav>
+    <ul>
+      <li class="nav-item active" data-tab="about">ABOUT</li>
+      <li class="nav-item" data-tab="projects">PROJECTS</li>
+      <li class="nav-item" data-tab="contact">CONTACT</li>
+      <div class="nav-indicator"></div>
+    </ul>
+  </nav>
+  <main>
+    <section class="hero">
+      <img src="./asset/img/Herobanner.svg" alt="hero">
+
+      <!-- Floating flowers for animation -->
+      <div class="floating-flowers">
+        <img src="./asset/img/blueflower.svg" alt="blue flower" class="floating-flower">
+        <img src="./asset/img/greenflower.svg" alt="green flower" class="floating-flower">
+        <img src="./asset/img/pinkflower.svg" alt="pink flower" class="floating-flower">
+        <img src="./asset/img/blueflower.svg" alt="blue flower" class="floating-flower">
+        <img src="./asset/img/greenflower.svg" alt="green flower" class="floating-flower">
+        <img src="./asset/img/pinkflower.svg" alt="pink flower" class="floating-flower">
+        <img src="./asset/img/blueflower.svg" alt="blue flower" class="floating-flower">
+        <img src="./asset/img/greenflower.svg" alt="green flower" class="floating-flower">
+        <img src="./asset/img/pinkflower.svg" alt="pink flower" class="floating-flower">
+        <img src="./asset/img/blueflower.svg" alt="blue flower" class="floating-flower">
+        <img src="./asset/img/greenflower.svg" alt="green flower" class="floating-flower">
+        <img src="./asset/img/pinkflower.svg" alt="pink flower" class="floating-flower">
+      </div>
+
+      <div class="hero-content">
+        <div class="headings">
+          <div class="heading1">
+            <img src="./asset/img/Hoa.svg" alt="hoa">
+            <h1>Xin chào, mình là <span>Tiểu My</span></h1>
+            <img src="./asset/img/Hoa.svg" alt="hoa">
+          </div>
+          <div class="heading2">
+            <h1>Là sinh viên năm cuối chuyên ngành <span> E-Commerce</span></h1>
+          </div>
         </div>
-        <div class="heading2">
-          <h1>Là sinh viên năm cuối chuyên ngành <span> E-Commerce</span></h1>
+        <div class="button">
+          <h1>Scroll for more ↓</h1>
         </div>
       </div>
-      <div class="button">
-        <h1>Scroll for more ↓</h1>
+    </section>
+
+    <section class="intro">
+      <div class="left-info">
+        <div class="heading">
+          <h1>Hello,<br> I'm My!</h1>
+          <img src="./asset/img/Hoa.svg" alt="hoa">
+        </div>
+        <p> I’m a junior majoring in E-commerce at Ho Chi Minh City University of Technology and Education. <br>
+          I’m seeking an E-commerce internship opportunity to apply my knowledge in digital business, data analysis, and
+          customer experience optimization.</p>
+        <div class="icon-list">
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=my.pnt2004@gmail.com" target="_blank"><img src="./asset/img/gmail.svg" alt="Gmail"></a>
+          <a href="https://www.linkedin.com/in/mypnt2004/" target="_blank"><img src="./asset/img/linkedin.svg" alt="Linkedin"></a>
+          <img src="./asset/img/phone.svg" alt="Phone">
+          <img src="./asset/img/location.svg" alt="Location">
+        </div>
+      </div>
+      <img class="intro_banner" src="./asset/img/tieumyhero.svg" alt="hero">
+    </section>
+
+   <section class="education">
+    <h1>Education</h1>
+    <div class="card-list">
+      <div class="card-education">
+        <div class="card-content"> 
+          <h2 class="card-tag">
+            Education
+          </h2>
+          <h3 class="card-title">
+            HCM University of Technology and Education
+          </h3>
+        </div>
+        <div class="card-des"> 
+          <h1 class="course">E-commerce</h1>
+          <h1 class="time">2022-2026</h1>
+        </div>
+      </div>
+      <div class="card-education">
+        <div class="card-content"> 
+          <h2 class="card-tag">
+            Education
+          </h2>
+          <h3 class="card-title">
+            HCM University of Technology and Education
+          </h3>
+        </div>
+        <div class="card-des"> 
+          <h1 class="course">E-commerce</h1>
+          <h1 class="time">2022-2026</h1>
+        </div>
+      </div>
+      <div class="card-education">
+        <div class="card-content"> 
+          <h2 class="card-tag">
+            Education
+          </h2>
+          <h3 class="card-title">
+            HCM University of Technology and Education
+          </h3>
+        </div>
+        <div class="card-des"> 
+          <h1 class="course">E-commerce</h1>
+          <h1 class="time">2022-2026</h1>
+        </div>
       </div>
     </div>
-  </section>
-</main>
-<script src="./asset/js/gsap.js"></script>
+
+   </section>
+
+  </main>
+  <script src="./asset/js/gsap.js"></script>
+  <script src="./asset/js/main.js"></script>
 </body>
+
 </html>
