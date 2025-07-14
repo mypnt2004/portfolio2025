@@ -72,90 +72,103 @@ document.addEventListener('DOMContentLoaded', function() {
         }, "-=0.5");
     }
     
-    // Floating Flowers Animation
-    const floatingFlowers = document.querySelectorAll('.floating-flower');
-    
-    if (floatingFlowers.length > 0) {
-        // Function to get random position within hero section bounds
-        function getRandomPosition() {
-            const hero = document.querySelector('.hero');
-            const heroRect = hero.getBoundingClientRect();
-            
-            // Get random position with some margin from edges
-            const margin = 80;
-            const randomX = Math.random() * (heroRect.width - margin * 2) + margin;
-            const randomY = Math.random() * (heroRect.height - margin * 2) + margin;
-            
-            return { x: randomX, y: randomY };
-        }
+    // Floating Flowers Animation for all sections
+    function initFloatingFlowers(containerSelector, flowerSelector, intensity = 'normal') {
+        const container = document.querySelector(containerSelector);
+        const flowers = container ? container.querySelectorAll(flowerSelector) : [];
         
-        // Set initial positions and states for floating flowers
-        floatingFlowers.forEach((flower, index) => {
-            const randomPos = getRandomPosition();
+        if (flowers.length > 0) {
+            // Function to get random position within container bounds
+            function getRandomPosition() {
+                const containerRect = container.getBoundingClientRect();
+                const margin = intensity === 'high' ? 80 : 50;
+                const randomX = Math.random() * (containerRect.width - margin * 2) + margin;
+                const randomY = Math.random() * (containerRect.height - margin * 2) + margin;
+                return { x: randomX, y: randomY };
+            }
             
-            gsap.set(flower, {
-                left: randomPos.x,
-                top: randomPos.y,
-                scale: 0,
-                opacity: 0,
-                rotation: Math.random() * 360,
-                transformOrigin: "center center"
-            });
-        });
-        
-        // Create staggered animation for floating flowers
-        const floatingTimeline = gsap.timeline({ delay: 1.5 });
-        
-        floatingFlowers.forEach((flower, index) => {
-            // Zoom out effect with opacity fade in
-            floatingTimeline.to(flower, {
-                scale: 1,
-                opacity: 0.7,
-                duration: 1.8,
-                ease: "back.out(1.2)",
-                delay: index * 0.8
-            }, 0)
-            
-            // Continuous slow rotation
-            .to(flower, {
-                rotation: "+=360",
-                duration: 15 + Math.random() * 10, // Random rotation speed between 15-25 seconds
-                ease: "none",
-                repeat: -1,
-                delay: index * 0.8
-            }, 0.5)
-            
-            // Gentle floating movement
-            .to(flower, {
-                y: "+=20",
-                duration: 4 + Math.random() * 2,
-                ease: "power1.inOut",
-                yoyo: true,
-                repeat: -1,
-                delay: index * 0.8
-            }, 1)
-            
-            .to(flower, {
-                x: "+=15",
-                duration: 6 + Math.random() * 3,
-                ease: "power1.inOut",
-                yoyo: true,
-                repeat: -1,
-                delay: index * 0.8
-            }, 1.5);
-        });
-        
-        // Reposition flowers on window resize
-        window.addEventListener('resize', () => {
-            floatingFlowers.forEach(flower => {
+            // Set initial positions and states
+            flowers.forEach((flower, index) => {
                 const randomPos = getRandomPosition();
                 gsap.set(flower, {
                     left: randomPos.x,
-                    top: randomPos.y
+                    top: randomPos.y,
+                    scale: 0,
+                    opacity: 0,
+                    rotation: Math.random() * 360,
+                    transformOrigin: "center center"
                 });
             });
-        });
+            
+            // Animation settings based on intensity
+            const settings = {
+                high: { opacity: 0.7, duration: 1.8, stagger: 0.8, moveRange: 20 },
+                normal: { opacity: 0.5, duration: 2.5, stagger: 1.2, moveRange: 15 },
+                low: { opacity: 0.3, duration: 3, stagger: 1.5, moveRange: 10 }
+            };
+            
+            const config = settings[intensity] || settings.normal;
+            
+            // Create staggered animation
+            const delay = containerSelector === '.hero' ? 1.5 : 0.5;
+            const floatingTimeline = gsap.timeline({ delay });
+            
+            flowers.forEach((flower, index) => {
+                // Zoom out effect with opacity fade in
+                floatingTimeline.to(flower, {
+                    scale: 1,
+                    opacity: config.opacity,
+                    duration: config.duration,
+                    ease: "back.out(1.2)",
+                    delay: index * config.stagger
+                }, 0)
+                
+                // Continuous slow rotation
+                .to(flower, {
+                    rotation: "+=360",
+                    duration: 15 + Math.random() * 10,
+                    ease: "none",
+                    repeat: -1,
+                    delay: index * config.stagger
+                }, 0.5)
+                
+                // Gentle floating movement
+                .to(flower, {
+                    y: `+=${config.moveRange}`,
+                    duration: 4 + Math.random() * 2,
+                    ease: "power1.inOut",
+                    yoyo: true,
+                    repeat: -1,
+                    delay: index * config.stagger
+                }, 1)
+                
+                .to(flower, {
+                    x: `+=${config.moveRange * 0.75}`,
+                    duration: 6 + Math.random() * 3,
+                    ease: "power1.inOut",
+                    yoyo: true,
+                    repeat: -1,
+                    delay: index * config.stagger
+                }, 1.5);
+            });
+            
+            // Reposition flowers on window resize
+            window.addEventListener('resize', () => {
+                flowers.forEach(flower => {
+                    const randomPos = getRandomPosition();
+                    gsap.set(flower, {
+                        left: randomPos.x,
+                        top: randomPos.y
+                    });
+                });
+            });
+        }
     }
+    
+    // Initialize flowers for different sections
+    initFloatingFlowers('.hero', '.floating-flower', 'high');        // Hero: nhiều hoa, animation mạnh
+    initFloatingFlowers('.intro', '.floating-flower', 'normal');     // Intro: vừa phải  
+    initFloatingFlowers('.education', '.floating-flower', 'low');    // Education: ít hoa, animation nhẹ
     
     if (heroBanner) {
         // Set initial transform origin

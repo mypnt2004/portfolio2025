@@ -84,6 +84,7 @@ overflow: hidden;
     height: 100%;
     pointer-events: none;
     z-index: 0;
+    overflow: hidden;
 }
 
 .floating-flower {
@@ -93,6 +94,27 @@ overflow: hidden;
     opacity: 0;
     transform: scale(0);
     pointer-events: none;
+}
+
+/* Section positioning for flowers */
+.intro {
+    position: relative;
+}
+
+.education {
+    position: relative;
+}
+
+/* Intro flowers - smaller and fewer */
+.intro-flowers .floating-flower {
+    width: 40px;
+    height: 40px;
+}
+
+/* Education flowers - smaller and fewer */
+.education-flowers .floating-flower {
+    width: 35px;
+    height: 35px;
 }
 
 .hero-content {display: flex;
