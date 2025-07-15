@@ -593,3 +593,75 @@ function animateContactSection() {
         }, 600 + (index * 150)); // Stagger contact items
     });
 }
+
+// ===========================
+// NAVIGATION SCROLL BEHAVIOR
+// ===========================
+
+let lastScrollTop = 0;
+let scrollThreshold = 10; // Minimum scroll distance to trigger hide/show
+let isScrolling = false;
+
+function handleNavScroll() {
+    const nav = document.querySelector('nav');
+    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    // Prevent execution during momentum scrolling on mobile
+    if (isScrolling) return;
+    
+    // If at the very top, hide nav
+    if (currentScrollTop <= scrollThreshold) {
+        nav.classList.add('nav-hidden');
+        return;
+    }
+    
+    // Check scroll direction
+    if (Math.abs(currentScrollTop - lastScrollTop) < scrollThreshold) {
+        return; // Not enough scroll distance
+    }
+    
+    if (currentScrollTop > lastScrollTop) {
+        // Scrolling down - show nav
+        nav.classList.remove('nav-hidden');
+    } else {
+        // Scrolling up - hide nav
+        nav.classList.add('nav-hidden');
+    }
+    
+    lastScrollTop = currentScrollTop;
+}
+
+// Throttle scroll events for better performance
+let scrollTimeout;
+window.addEventListener('scroll', function() {
+    if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+    }
+    
+    scrollTimeout = setTimeout(handleNavScroll, 10);
+});
+
+// Handle touch scroll events on mobile
+let touchStartY = 0;
+let touchEndY = 0;
+
+window.addEventListener('touchstart', function(e) {
+    touchStartY = e.touches[0].clientY;
+    isScrolling = true;
+});
+
+window.addEventListener('touchend', function(e) {
+    touchEndY = e.changedTouches[0].clientY;
+    isScrolling = false;
+    
+    // Handle navigation based on touch direction
+    setTimeout(handleNavScroll, 100);
+});
+
+// Initialize navigation state - start hidden
+document.addEventListener('DOMContentLoaded', function() {
+    const nav = document.querySelector('nav');
+    nav.classList.add('nav-hidden');
+});
+
+console.log('Navigation scroll behavior initialized');
