@@ -2,6 +2,11 @@ a {
     display: inline-block;
     text-decoration: none;
 }
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
 body {
     padding-top: 40px; /* Less padding needed for container nav */
 }

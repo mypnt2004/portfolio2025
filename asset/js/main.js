@@ -665,3 +665,143 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 console.log('Navigation scroll behavior initialized');
+
+// ===========================
+// SMOOTH SCROLLING NAVIGATION
+// ===========================
+
+function initSmoothScrolling() {
+    const navItems = document.querySelectorAll('.nav-item');
+    const navIndicator = document.querySelector('.nav-indicator');
+    
+    // Section mapping
+    const sectionMap = {
+        'about': 'intro',
+        'projects': 'project', 
+        'contact': 'contact'
+    };
+    
+    // Add click event listeners to nav items
+    navItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const tabName = this.getAttribute('data-tab');
+            const targetSectionClass = sectionMap[tabName];
+            
+            if (targetSectionClass) {
+                const targetSection = document.querySelector(`.${targetSectionClass}`);
+                
+                if (targetSection) {
+                    // Calculate offset to account for fixed nav
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    
+                    // Different offsets for different sections
+                    let extraOffset = 60; // Default extra spacing
+                    if (tabName === 'about') {
+                        extraOffset = 120; // Much more spacing for intro section
+                    } else if (tabName === 'contact') {
+                        extraOffset = 140; // Even more spacing for contact section
+                    }
+                    
+                    const offsetTop = targetSection.offsetTop - navHeight - extraOffset;
+                    
+                    // Smooth scroll to target section
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active nav item
+                    updateActiveNavItem(tabName);
+                }
+            }
+        });
+    });
+    
+    // Function to update active nav item
+    function updateActiveNavItem(activeTab) {
+        navItems.forEach(item => {
+            item.classList.remove('active');
+            if (item.getAttribute('data-tab') === activeTab) {
+                item.classList.add('active');
+            }
+        });
+        
+        // Update nav indicator position
+        updateNavIndicator();
+    }
+    
+    // Function to update nav indicator position
+    function updateNavIndicator() {
+        const activeItem = document.querySelector('.nav-item.active');
+        if (activeItem && navIndicator) {
+            const rect = activeItem.getBoundingClientRect();
+            const navRect = document.querySelector('nav ul').getBoundingClientRect();
+            
+            navIndicator.style.left = (rect.left - navRect.left) + 'px';
+            navIndicator.style.width = rect.width + 'px';
+            navIndicator.style.height = rect.height + 'px';
+        }
+    }
+    
+    // Initialize nav indicator position
+    setTimeout(updateNavIndicator, 100);
+    
+    // Update active nav based on scroll position
+    function updateNavOnScroll() {
+        const sections = ['intro', 'project', 'contact'];
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const navHeight = document.querySelector('nav').offsetHeight;
+        
+        let activeSection = 'about'; // default
+        
+        for (const sectionClass of sections) {
+            const section = document.querySelector(`.${sectionClass}`);
+            if (section) {
+                // Use consistent offset calculation
+                let threshold = 120; // Default threshold
+                const tabName = Object.keys(sectionMap).find(key => sectionMap[key] === sectionClass);
+                
+                if (tabName === 'about') {
+                    threshold = 180; // Consistent with intro section offset
+                } else if (tabName === 'contact') {
+                    threshold = 200; // Consistent with contact section offset
+                }
+                
+                const sectionTop = section.offsetTop - navHeight - threshold;
+                const sectionBottom = sectionTop + section.offsetHeight;
+                
+                if (scrollTop >= sectionTop && scrollTop < sectionBottom) {
+                    if (tabName) {
+                        activeSection = tabName;
+                        break;
+                    }
+                }
+            }
+        }
+        
+        // Update active nav item if different
+        const currentActive = document.querySelector('.nav-item.active');
+        if (currentActive && currentActive.getAttribute('data-tab') !== activeSection) {
+            updateActiveNavItem(activeSection);
+        }
+    }
+    
+    // Throttle scroll events for nav updates
+    let navScrollTimeout;
+    window.addEventListener('scroll', function() {
+        if (navScrollTimeout) {
+            clearTimeout(navScrollTimeout);
+        }
+        
+        navScrollTimeout = setTimeout(updateNavOnScroll, 100);
+    });
+    
+    console.log('Smooth scrolling navigation initialized');
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initSmoothScrolling();
+});
