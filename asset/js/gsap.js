@@ -514,4 +514,71 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
-}); 
+    
+    // Experience Cards Flip Animation
+    setupExperienceAnimation();
+});
+
+// Experience Section Animation with GSAP
+function setupExperienceAnimation() {
+    const experienceSection = document.querySelector('.experience');
+    const experienceCards = document.querySelectorAll('.expcard');
+    
+    if (experienceSection && experienceCards.length > 0) {
+        // Set initial state for cards - flipped horizontally and hidden
+        gsap.set(experienceCards, {
+            rotationY: -90,
+            opacity: 0,
+            transformOrigin: "left center",
+            transformStyle: "preserve-3d"
+        });
+        
+        // Create intersection observer for experience section
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const experienceObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    console.log('Experience section in view, starting flip animations');
+                    animateExperienceCards();
+                    experienceObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        experienceObserver.observe(experienceSection);
+    }
+}
+
+function animateExperienceCards() {
+    const experienceCards = document.querySelectorAll('.expcard');
+    
+    // Create timeline for staggered animation
+    const tl = gsap.timeline();
+    
+    experienceCards.forEach((card, index) => {
+        // Horizontal flip card animation (slower)
+        tl.to(card, {
+            rotationY: 0,
+            opacity: 1,
+            duration: 1.2,
+            ease: "back.out(1.4)",
+            transformOrigin: "left center"
+        }, index * 0.4); // Stagger by 0.4 seconds
+        
+        // Add subtle bounce effect after flip
+        tl.to(card, {
+            y: -8,
+            duration: 0.3,
+            ease: "power2.out"
+        }, index * 0.4 + 1.0)
+        .to(card, {
+            y: 0,
+            duration: 0.3,
+            ease: "power2.in"
+        }, index * 0.4 + 1.3);
+    });
+}
